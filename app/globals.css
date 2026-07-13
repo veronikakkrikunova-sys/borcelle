@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: #141311;
+  color: #f4f2ee;
+  font-family: 'General Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #cbc3b4;
+}
+a:hover {
+  color: #ede6d8;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7c766b;
+}
+input,
+textarea,
+select {
+  color-scheme: dark;
+}
+option {
+  color: #f4f2ee;
+  background: #26241f;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #cbc3b4 !important;
+}
+
+/* Shared hover-state utilities (base styles are set inline per element,
+   matching the design source's separate style/style-hover split). */
+.btn-light:hover {
+  background: #ffffff;
+}
+.btn-brand:hover {
+  background: #12a67f;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+.link-fade:hover {
+  color: #cbc3b4;
+}
+.link-muted:hover {
+  color: #f4f2ee;
+}
+.link-breadcrumb:hover {
+  color: #f4f2ee;
+}
+.card-hover:hover {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+/* Liquid Glass material — translucent surfaces pick up light from what's
+   behind them (a bright inner rim, brightest along the top edge) rather than
+   reading as flat frosted panels. Layered on top of each element's own
+   inline background/border so palette stays per-component. */
+.btn-ghost {
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 6px 20px rgba(0, 0, 0, 0.2);
+  /* Safari clips backdrop-filter to a plain rect unless the box also
+     establishes its own stacking context, which shows as a squared-off
+     edge poking past the rounded corners. */
+  isolation: isolate;
+}
+.btn-light {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 6px 20px rgba(0, 0, 0, 0.25);
+}
+.btn-brand {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 20px rgba(13, 140, 110, 0.35);
+}
+.card-hover {
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  isolation: isolate;
+}
+.nav-glass {
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 28px rgba(0, 0, 0, 0.3);
+  isolation: isolate;
+}
+
+/* Long-form legal page typography (Terms, Privacy, Service Terms). */
+.legal-content h2 {
+  font-weight: 600;
+  font-size: clamp(19px, 2.2vw, 24px);
+  letter-spacing: -0.01em;
+  color: #f4f2ee;
+  margin: 44px 0 14px;
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #c3bcb0;
+  margin: 0 0 16px;
+}
+.legal-content ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  color: #c3bcb0;
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+.legal-content li {
+  margin-bottom: 6px;
+}
+.legal-content strong {
+  color: #f4f2ee;
+}
+.legal-content a {
+  color: #cbc3b4;
+}
+.legal-content hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 36px 0;
+}
+
+.carousel-scroll {
+  scrollbar-width: none;
+}
+.carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+.carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Page load animation — hero content eases in on first paint. Applied
+   directly to existing elements (no wrapper divs), so it's safe on grid
+   items whose layout depends on being a direct child. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-enter 0.8s cubic-bezier(0.16, 0.8, 0.24, 1) both;
+}
+.page-enter-1 {
+  animation-delay: 0.05s;
+}
+.page-enter-2 {
+  animation-delay: 0.14s;
+}
+.page-enter-3 {
+  animation-delay: 0.23s;
+}
+.page-enter-4 {
+  animation-delay: 0.32s;
+}
+
+/* Scroll reveal — sections fade/slide up as they enter the viewport.
+   Reveal.tsx toggles `.is-visible` once via IntersectionObserver. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 0.8, 0.24, 1),
+    transform 0.7s cubic-bezier(0.16, 0.8, 0.24, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

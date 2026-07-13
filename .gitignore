@@ -1,0 +1,13 @@
+/node_modules
+/.next/
+/out/
+.env.local
+.env*.local
+.DS_Store
+*.pem
+npm-debug.log*
+tsconfig.tsbuildinfo
+
+# Original design handoff bundle (reference only, not part of the app)
+/premium-property-services-website
+/Premium property services website-handoff.zip
